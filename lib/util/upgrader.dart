@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../generated/l10n.dart';
 import 'context.dart';
 import 'http.dart';
+import 'l10n.dart';
 
 class Upgrader {
   static const int version = 1;
@@ -44,7 +44,7 @@ class Upgrader {
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-            title: Text(S.of(context).upgraderNewer),
+            title: Text(l10n('upgrader.newer')),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,13 +63,13 @@ class Upgrader {
   static List<Widget> _actions(BuildContext context) {
     List<Widget> list = [
       TextButton(
-        child: Text(S.of(context).upgraderForward),
+        child: Text(l10n('upgrader.forward')),
         onPressed: forward,
       ),
     ];
     if (_get('forced', 0) == 0) {
       list.add(TextButton(
-        child: Text(S.of(context).upgraderCancel),
+        child: Text(l10n('upgrader.cancel')),
         onPressed: () {
           Navigator.of(context).pop();
         },
@@ -87,7 +87,7 @@ class Upgrader {
     Map<String, dynamic>? map = _get('explain', null);
     if (map == null) return '';
 
-    String language = Context.locale!.languageCode;
+    String language = L10n.locale;
     if (map.containsKey(language)) return map[language];
 
     if (map.containsKey('en')) return map['en'];

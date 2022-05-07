@@ -1,0 +1,52 @@
+{
+  "unset": "Unset",
+  "save": "Save",
+  "ok": "OK",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "http": {
+    "error": "HTTP request error"
+  },
+  "upgrader": {
+    "newer": "New version found",
+    "forward": "Update Now",
+    "cancel": "Next Reminder"
+  },
+  "password": {
+    "gesture": {
+      "new": "Please draw a gesture password",
+      "repeat": "Please draw gesture password again",
+      "min": "Connect at least {} points"
+    },
+    "input": {
+      "new": "Please enter a password",
+      "repeat": "Please enter the password again",
+      "min": "Enter at least {}  characters"
+    },
+    "not-equals": "The two passwords are inconsistent",
+    "standard": "Standard",
+    "advanced": "Advanced",
+    "professional": "Professional",
+    "digit": "Digit",
+    "text": "Text"
+  },
+  "picture": {
+    "crop": {
+      "": "Crop",
+      "fail": "Failed to crop picture"
+    },
+    "flip": "Flip",
+    "rotate": {
+      "left": "Rotate Left",
+      "right": "Rotate Right"
+    },
+    "reset": "Reset",
+    "camera": "Use the camera to take pictures",
+    "album": "Select from album",
+    "upload": {
+      "fail": "Failed to upload picture"
+    }
+  },
+  "not-currently-supported": "Not currently supported",
+  "failure": "unknow error!"
+}

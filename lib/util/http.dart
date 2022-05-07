@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 
-import '../generated/l10n.dart';
 import 'context.dart';
 import 'generator.dart';
 import 'io.dart';
+import 'l10n.dart';
 import 'notice.dart';
 
 typedef Host = String Function();
@@ -79,7 +79,7 @@ class Http {
     } on Exception {
       return Future.value({
         'code': 500,
-        'message': Context.context == null ? 'HTTP request error' : S.of(Context.context!).httpError,
+        'message': Context.context == null ? 'HTTP request error' : l10n('http.error'),
       });
     }
   }
@@ -117,7 +117,7 @@ class Http {
 
   static Options _options() => Options(headers: {
         'photon-session-id': sid,
-        'accept-language': Context.locale!.languageCode,
+        'accept-language': L10n.locale,
       });
 
   static String get sid {

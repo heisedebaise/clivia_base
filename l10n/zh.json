@@ -1,0 +1,52 @@
+{
+  "unset": "未设置",
+  "save": "保存",
+  "ok": "确定",
+  "submit": "提交",
+  "cancel": "取消",
+  "http": {
+    "error": "HTTP请求错误"
+  },
+  "upgrader": {
+    "newer": "发现新版本",
+    "forward": "立即更新",
+    "cancel": "下次提醒"
+  },
+  "password": {
+    "guesture": {
+      "new": "请绘制手势密码",
+      "repeat": "请再次绘制手势密码",
+      "min": "最少连接{}个点"
+    },
+    "input": {
+      "new": "请输入密码",
+      "repeat": "请再次输入密码",
+      "min": "最少输入{}个字符"
+    },
+    "not-equals": "两次密码不一致",
+    "standard": "标准",
+    "advanced": "高级",
+    "professional": "专业",
+    "digit": "数字",
+    "text": "文本"
+  },
+  "picture": {
+    "crop": {
+      "": "裁切",
+      "fail": "裁切图片失败"
+    },
+    "flip": "翻转",
+    "rotate": {
+      "left": "左旋转",
+      "right": "右旋转"
+    },
+    "reset": "重置",
+    "camera": "使用相机拍照",
+    "album": "从相册选择",
+    "upload": {
+      "fail": "图片上传失败"
+    }
+  },
+  "not-currently-supported": "暂不支持",
+  "failure": "未知错误！"
+}

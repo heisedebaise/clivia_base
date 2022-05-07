@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gesture_password_widget/gesture_password_widget.dart';
 
-import '../generated/l10n.dart';
 import '../util/context.dart';
+import '../util/l10n.dart';
 import 'popage.dart';
 
 class PasswordPage extends StatefulWidget {
@@ -98,7 +98,7 @@ class _PasswordPageState extends State<PasswordPage> {
 
   String msg() {
     if (message == '') {
-      if (widget.twice) return navigation > 2 ? S.of(context).passwordInputNew : S.of(context).passwordGestureNew;
+      if (widget.twice) return l10n('password.${navigation > 2 ? 'input' : 'gesture'}.new');
 
       return '';
     }
@@ -194,13 +194,13 @@ class _PasswordPageState extends State<PasswordPage> {
 
   List<BottomNavigationBarItem> items() {
     List<BottomNavigationBarItem> list = [
-      item(Icons.filter_3, S.of(context).passwordStandard),
-      item(Icons.filter_5, S.of(context).passwordAdvanced),
-      item(Icons.filter_7, S.of(context).passwordProfessional),
+      item(Icons.filter_3, l10n('password.standard')),
+      item(Icons.filter_5, l10n('password.advanced')),
+      item(Icons.filter_7, l10n('password.professional')),
     ];
     if (widget.full) {
-      list.add(item(Icons.dialpad, S.of(context).passwordDigit));
-      list.add(item(Icons.keyboard_outlined, S.of(context).passwordText));
+      list.add(item(Icons.dialpad, l10n('password.digit')));
+      list.add(item(Icons.keyboard_outlined, l10n('password.text')));
     }
 
     return list;
@@ -214,9 +214,7 @@ class _PasswordPageState extends State<PasswordPage> {
   Future<void> onComplete(String value) async {
     if (value.length < widget.min || (navigation <= 2 && value.split(',').length < widget.min)) {
       setState(() {
-        message = navigation > 2
-            ? '${S.of(context).passwordInputMinPrefix}${widget.min}${S.of(context).passwordInputMinSuffix}'
-            : '${S.of(context).passwordGestureMinPrefix}${widget.min}${S.of(context).passwordGestureMinSuffix}';
+        message = l10n('password.${navigation > 2 ? 'input' : 'gesture'}.min', [widget.min]);
       });
 
       return;
@@ -226,7 +224,7 @@ class _PasswordPageState extends State<PasswordPage> {
       if (this.value == null) {
         setState(() {
           this.value = value;
-          message = navigation > 2 ? S.of(context).passwordInputRepeat : S.of(context).passwordGestureRepeat;
+          message = l10n('password.${navigation > 2 ? 'input' : 'gesture'}.repeat');
           controller.text = '';
         });
 
@@ -236,7 +234,7 @@ class _PasswordPageState extends State<PasswordPage> {
       if (value != this.value) {
         setState(() {
           this.value = null;
-          message = S.of(context).passwordNotEquals;
+          message = l10n('password.not-equals');
         });
 
         return;

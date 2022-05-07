@@ -6,9 +6,9 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../generated/l10n.dart';
 import '../util/context.dart';
 import '../util/http.dart';
+import '../util/l10n.dart';
 import '../util/picker.dart';
 import 'image.dart';
 import 'piclocal.dart' if (dart.library.js) 'piclocal_web.dart';
@@ -61,7 +61,7 @@ class _PicturePageState extends State<PicturePage> {
                 List<int>? data = await cropImage(editor.currentState!, rawImageData());
                 if (data == null) {
                   Notice.loading(false);
-                  Notice.error(0, S.of(context).pictureCropFail);
+                  Notice.error(0, l10n('picture.crop.fail'));
 
                   return;
                 }
@@ -69,7 +69,7 @@ class _PicturePageState extends State<PicturePage> {
                 Map<String, dynamic>? map = await Http.upload(widget.upload, bytes: data, filename: 'image.jpg', contentType: 'image/jpeg');
                 if (map == null || !map.containsKey('path')) {
                   Notice.loading(false);
-                  Notice.error(0, S.of(context).pictureUploadFail);
+                  Notice.error(0, l10n('picture.upload.fail'));
 
                   return;
                 }
@@ -85,11 +85,11 @@ class _PicturePageState extends State<PicturePage> {
         body: body(),
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            toolItem(Icons.crop, S.of(context).pictureCrop),
-            toolItem(Icons.flip, S.of(context).pictureFlip),
-            toolItem(Icons.rotate_left, S.of(context).pictureRotateLeft),
-            toolItem(Icons.rotate_right, S.of(context).pictureRotateRight),
-            toolItem(Icons.restore, S.of(context).pictureReset),
+            toolItem(Icons.crop, l10n('picture.crop')),
+            toolItem(Icons.flip, l10n('picture.flip')),
+            toolItem(Icons.rotate_left, l10n('picture.rotate.left')),
+            toolItem(Icons.rotate_right, l10n('picture.rotate.right')),
+            toolItem(Icons.restore, l10n('picture.reset')),
           ],
           type: BottomNavigationBarType.fixed,
           currentIndex: 0,
@@ -166,13 +166,13 @@ class _PicturePageState extends State<PicturePage> {
         children: [
           pickerItem(
             Icons.photo_camera,
-            S.of(context).pictureCamera,
+            l10n('picture.camera'),
             ImageSource.camera,
           ),
           divider,
           pickerItem(
             Icons.photo_album,
-            S.of(context).pictureAlbum,
+            l10n('picture.album'),
             ImageSource.gallery,
           )
         ],

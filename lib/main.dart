@@ -1,19 +1,19 @@
 import 'package:clivia_base/util/upgrader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'generated/l10n.dart';
 import 'notifier.dart';
 import 'util/context.dart';
 import 'util/http.dart';
 import 'util/io.dart';
+import 'util/l10n.dart';
 
-Future<void> init(Host host) async {
+Future<void> init(List<String> locales, List<String> l10ns, Host host) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Io.init();
   await Context.init();
+  await L10n.load(locales, l10ns);
   Http.init(host);
 }
 
@@ -21,9 +21,8 @@ class Main extends StatelessWidget {
   final String title;
   final Widget home;
   final List<ChangeNotifier>? notifiers;
-  final List<LocalizationsDelegate<dynamic>>? delegates;
 
-  const Main({Key? key, required this.title, required this.home, this.notifiers, this.delegates}) : super(key: key);
+  const Main({Key? key, required this.title, required this.home, this.notifiers}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,27 +33,13 @@ class Main extends StatelessWidget {
       }
     }
 
-    List<LocalizationsDelegate<dynamic>> localizationsDelegates = [
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
-      S.delegate,
-    ];
-    if (delegates != null) {
-      localizationsDelegates.addAll(delegates!);
-    }
-
     return MultiProvider(
       providers: providers,
       child: Consumer<Notifier>(
         builder: (context, notifier, _) => MaterialApp(
-          onGenerateTitle: (context) => title,
+          onGenerateTitle: (context) => l10n(title),
           debugShowCheckedModeBanner: false,
           theme: Context.theme,
-          localizationsDelegates: localizationsDelegates,
-          supportedLocales: S.delegate.supportedLocales,
-          localeListResolutionCallback: Context.localeCallback,
-          locale: Context.locale,
           home: home,
           navigatorKey: Context.navigatorKey,
           builder: EasyLoading.init(),
@@ -104,7 +89,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
     for (int i = 0; i < ids.length; i++) {
       items.add(BottomNavigationBarItem(
         icon: Icon(ids[i]),
-        label: ls[i],
+        label: l10n(ls[i]),
       ));
     }
 
@@ -136,7 +121,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
     for (int i = 0; i < ids.length; i++) {
       destinations.add(NavigationRailDestination(
         icon: Icon(ids[i]),
-        label: Text(ls[i]),
+        label: Text(l10n(ls[i])),
       ));
     }
 

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../generated/l10n.dart';
 import 'io.dart';
 
 class Context {
@@ -137,12 +136,4 @@ class Context {
   }
 
   static bool get landscape => _orientation == Orientation.landscape;
-
-  static Locale? get locale => localeCallback(WidgetsBinding.instance!.window.locales, S.delegate.supportedLocales);
-
-  static Locale? localeCallback(List<Locale>? locales, Iterable<Locale>? supportedLocales) {
-    String? language = get('language');
-
-    return language == null ? supportedLocales?.first : Locale.fromSubtags(languageCode: language);
-  }
 }

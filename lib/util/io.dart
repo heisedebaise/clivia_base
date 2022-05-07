@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'context.dart';
@@ -41,6 +42,14 @@ class Io {
     if (Context.isWeb) return;
 
     Directory(absolute(path)).createSync(recursive: true);
+  }
+
+  static Future<Map<String, dynamic>?> loadMap(String key) async {
+    try {
+      return Future.value(json.decode(await rootBundle.loadString(key)));
+    } catch (e) {
+      return Future.value(null);
+    }
   }
 
   static Future<Uint8List?> read(String path) async {
