@@ -49,6 +49,286 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `HTTP request error`
+  String get httpError {
+    return Intl.message(
+      'HTTP request error',
+      name: 'httpError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not currently supported`
+  String get notCurrentlySupported {
+    return Intl.message(
+      'Not currently supported',
+      name: 'notCurrentlySupported',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New version found`
+  String get upgraderNewer {
+    return Intl.message(
+      'New version found',
+      name: 'upgraderNewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Now`
+  String get upgraderForward {
+    return Intl.message(
+      'Update Now',
+      name: 'upgraderForward',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next Reminder`
+  String get upgraderCancel {
+    return Intl.message(
+      'Next Reminder',
+      name: 'upgraderCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crop`
+  String get pictureCrop {
+    return Intl.message(
+      'Crop',
+      name: 'pictureCrop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to crop picture`
+  String get pictureCropFail {
+    return Intl.message(
+      'Failed to crop picture',
+      name: 'pictureCropFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flip`
+  String get pictureFlip {
+    return Intl.message(
+      'Flip',
+      name: 'pictureFlip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rotate Left`
+  String get pictureRotateLeft {
+    return Intl.message(
+      'Rotate Left',
+      name: 'pictureRotateLeft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rotate Right`
+  String get pictureRotateRight {
+    return Intl.message(
+      'Rotate Right',
+      name: 'pictureRotateRight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset`
+  String get pictureReset {
+    return Intl.message(
+      'Reset',
+      name: 'pictureReset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use the camera to take pictures`
+  String get pictureCamera {
+    return Intl.message(
+      'Use the camera to take pictures',
+      name: 'pictureCamera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select from album`
+  String get pictureAlbum {
+    return Intl.message(
+      'Select from album',
+      name: 'pictureAlbum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to upload picture`
+  String get pictureUploadFail {
+    return Intl.message(
+      'Failed to upload picture',
+      name: 'pictureUploadFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please draw a gesture password`
+  String get passwordGestureNew {
+    return Intl.message(
+      'Please draw a gesture password',
+      name: 'passwordGestureNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please draw gesture password again`
+  String get passwordGestureRepeat {
+    return Intl.message(
+      'Please draw gesture password again',
+      name: 'passwordGestureRepeat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a password`
+  String get passwordInputNew {
+    return Intl.message(
+      'Please enter a password',
+      name: 'passwordInputNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the password again`
+  String get passwordInputRepeat {
+    return Intl.message(
+      'Please enter the password again',
+      name: 'passwordInputRepeat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The two passwords are inconsistent`
+  String get passwordNotEquals {
+    return Intl.message(
+      'The two passwords are inconsistent',
+      name: 'passwordNotEquals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect at least `
+  String get passwordGestureMinPrefix {
+    return Intl.message(
+      'Connect at least ',
+      name: 'passwordGestureMinPrefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` points`
+  String get passwordGestureMinSuffix {
+    return Intl.message(
+      ' points',
+      name: 'passwordGestureMinSuffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter at least `
+  String get passwordInputMinPrefix {
+    return Intl.message(
+      'Enter at least ',
+      name: 'passwordInputMinPrefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` characters`
+  String get passwordInputMinSuffix {
+    return Intl.message(
+      ' characters',
+      name: 'passwordInputMinSuffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standard`
+  String get passwordStandard {
+    return Intl.message(
+      'Standard',
+      name: 'passwordStandard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Advanced`
+  String get passwordAdvanced {
+    return Intl.message(
+      'Advanced',
+      name: 'passwordAdvanced',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Professional`
+  String get passwordProfessional {
+    return Intl.message(
+      'Professional',
+      name: 'passwordProfessional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digit`
+  String get passwordDigit {
+    return Intl.message(
+      'Digit',
+      name: 'passwordDigit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Text`
+  String get passwordText {
+    return Intl.message(
+      'Text',
+      name: 'passwordText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -57,6 +337,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

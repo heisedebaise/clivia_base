@@ -21,5 +21,52 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "httpError": MessageLookupByLibrary.simpleMessage("HTTP request error"),
+        "notCurrentlySupported":
+            MessageLookupByLibrary.simpleMessage("Not currently supported"),
+        "passwordAdvanced": MessageLookupByLibrary.simpleMessage("Advanced"),
+        "passwordDigit": MessageLookupByLibrary.simpleMessage("Digit"),
+        "passwordGestureMinPrefix":
+            MessageLookupByLibrary.simpleMessage("Connect at least "),
+        "passwordGestureMinSuffix":
+            MessageLookupByLibrary.simpleMessage(" points"),
+        "passwordGestureNew": MessageLookupByLibrary.simpleMessage(
+            "Please draw a gesture password"),
+        "passwordGestureRepeat": MessageLookupByLibrary.simpleMessage(
+            "Please draw gesture password again"),
+        "passwordInputMinPrefix":
+            MessageLookupByLibrary.simpleMessage("Enter at least "),
+        "passwordInputMinSuffix":
+            MessageLookupByLibrary.simpleMessage(" characters"),
+        "passwordInputNew":
+            MessageLookupByLibrary.simpleMessage("Please enter a password"),
+        "passwordInputRepeat": MessageLookupByLibrary.simpleMessage(
+            "Please enter the password again"),
+        "passwordNotEquals": MessageLookupByLibrary.simpleMessage(
+            "The two passwords are inconsistent"),
+        "passwordProfessional":
+            MessageLookupByLibrary.simpleMessage("Professional"),
+        "passwordStandard": MessageLookupByLibrary.simpleMessage("Standard"),
+        "passwordText": MessageLookupByLibrary.simpleMessage("Text"),
+        "pictureAlbum":
+            MessageLookupByLibrary.simpleMessage("Select from album"),
+        "pictureCamera": MessageLookupByLibrary.simpleMessage(
+            "Use the camera to take pictures"),
+        "pictureCrop": MessageLookupByLibrary.simpleMessage("Crop"),
+        "pictureCropFail":
+            MessageLookupByLibrary.simpleMessage("Failed to crop picture"),
+        "pictureFlip": MessageLookupByLibrary.simpleMessage("Flip"),
+        "pictureReset": MessageLookupByLibrary.simpleMessage("Reset"),
+        "pictureRotateLeft":
+            MessageLookupByLibrary.simpleMessage("Rotate Left"),
+        "pictureRotateRight":
+            MessageLookupByLibrary.simpleMessage("Rotate Right"),
+        "pictureUploadFail":
+            MessageLookupByLibrary.simpleMessage("Failed to upload picture"),
+        "upgraderCancel": MessageLookupByLibrary.simpleMessage("Next Reminder"),
+        "upgraderForward": MessageLookupByLibrary.simpleMessage("Update Now"),
+        "upgraderNewer":
+            MessageLookupByLibrary.simpleMessage("New version found")
+      };
 }
