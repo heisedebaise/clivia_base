@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clivia_base/component/dividers.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -50,9 +51,9 @@ class Upgrader {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(name()),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2),
-                  child: Divider(height: 1),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  child: Dividers.line,
                 ),
                 Text(explain()),
               ],

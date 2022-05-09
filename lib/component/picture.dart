@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:clivia_base/component/dividers.dart';
 import 'package:clivia_base/util/notice.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,6 @@ class PicturePage extends StatefulWidget {
 
 class _PicturePageState extends State<PicturePage> {
   final GlobalKey<ExtendedImageEditorState> editor = GlobalKey<ExtendedImageEditorState>();
-  final Divider divider = const Divider(height: 1);
   String? local;
 
   @override
@@ -169,7 +169,7 @@ class _PicturePageState extends State<PicturePage> {
             l10n(context, 'picture.camera'),
             ImageSource.camera,
           ),
-          divider,
+          Dividers.line,
           pickerItem(
             Icons.photo_album,
             l10n(context, 'picture.album'),
