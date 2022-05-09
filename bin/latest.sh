@@ -1,7 +1,6 @@
 #!/bin/bash
 
 dependencies=(
- intl
  provider
  path_provider
  shared_preferences
