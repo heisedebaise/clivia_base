@@ -98,7 +98,7 @@ class _PasswordPageState extends State<PasswordPage> {
 
   String msg() {
     if (message == '') {
-      if (widget.twice) return l10n('password.${navigation > 2 ? 'input' : 'gesture'}.new');
+      if (widget.twice) return l10n(context, 'password.${navigation > 2 ? 'input' : 'gesture'}.new');
 
       return '';
     }
@@ -194,13 +194,13 @@ class _PasswordPageState extends State<PasswordPage> {
 
   List<BottomNavigationBarItem> items() {
     List<BottomNavigationBarItem> list = [
-      item(Icons.filter_3, l10n('password.standard')),
-      item(Icons.filter_5, l10n('password.advanced')),
-      item(Icons.filter_7, l10n('password.professional')),
+      item(Icons.filter_3, l10n(context, 'password.standard')),
+      item(Icons.filter_5, l10n(context, 'password.advanced')),
+      item(Icons.filter_7, l10n(context, 'password.professional')),
     ];
     if (widget.full) {
-      list.add(item(Icons.dialpad, l10n('password.digit')));
-      list.add(item(Icons.keyboard_outlined, l10n('password.text')));
+      list.add(item(Icons.dialpad, l10n(context, 'password.digit')));
+      list.add(item(Icons.keyboard_outlined, l10n(context, 'password.text')));
     }
 
     return list;
@@ -214,7 +214,7 @@ class _PasswordPageState extends State<PasswordPage> {
   Future<void> onComplete(String value) async {
     if (value.length < widget.min || (navigation <= 2 && value.split(',').length < widget.min)) {
       setState(() {
-        message = l10n('password.${navigation > 2 ? 'input' : 'gesture'}.min', [widget.min]);
+        message = l10n(context, 'password.${navigation > 2 ? 'input' : 'gesture'}.min', [widget.min]);
       });
 
       return;
@@ -224,7 +224,7 @@ class _PasswordPageState extends State<PasswordPage> {
       if (this.value == null) {
         setState(() {
           this.value = value;
-          message = l10n('password.${navigation > 2 ? 'input' : 'gesture'}.repeat');
+          message = l10n(context, 'password.${navigation > 2 ? 'input' : 'gesture'}.repeat');
           controller.text = '';
         });
 
@@ -234,7 +234,7 @@ class _PasswordPageState extends State<PasswordPage> {
       if (value != this.value) {
         setState(() {
           this.value = null;
-          message = l10n('password.not-equals');
+          message = l10n(context, 'password.not-equals');
         });
 
         return;

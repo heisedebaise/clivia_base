@@ -79,7 +79,7 @@ class Http {
     } on Exception {
       return Future.value({
         'code': 500,
-        'message': Context.context == null ? 'HTTP request error' : l10n('http.error'),
+        'message': Context.context == null ? 'HTTP request error' : l10n(null,'http.error'),
       });
     }
   }

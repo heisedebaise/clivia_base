@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../notifier.dart';
@@ -49,8 +50,8 @@ class L10n {
     }
   }
 
-  static String get(String key, [List<dynamic>? args]) {
-    String k = '$_locale.$key';
+  static String get(BuildContext? context, String key, [List<dynamic>? args]) {
+    String k = '${(context ?? Context.context)?.watch<Notifier>().locale ?? _locale}.$key';
     if (!_map.containsKey(k)) return key;
 
     String value = _map[k] ?? key;
@@ -63,13 +64,13 @@ class L10n {
     return value;
   }
 
-  static Future<void> setLocale(String locale) async {
+  static Future<void> setLocale(BuildContext context, String locale) async {
     _locale = locale;
     await Context.set(_language, _locale);
-    Provider.of<Notifier>(Context.context!, listen: false).notify();
+    Provider.of<Notifier>(context, listen: false).locale = locale;
   }
 
   static String get locale => _locale;
 }
 
-String l10n(String key, [List<dynamic>? args]) => L10n.get(key, args);
+String l10n(BuildContext? context, String key, [List<dynamic>? args]) => L10n.get(context, key, args);

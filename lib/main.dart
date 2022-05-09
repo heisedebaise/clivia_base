@@ -37,7 +37,7 @@ class Main extends StatelessWidget {
       providers: providers,
       child: Consumer<Notifier>(
         builder: (context, notifier, _) => MaterialApp(
-          onGenerateTitle: (context) => l10n(title),
+          onGenerateTitle: (context) => l10n(context, title),
           debugShowCheckedModeBanner: false,
           theme: Context.theme,
           home: home,
@@ -89,7 +89,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
     for (int i = 0; i < ids.length; i++) {
       items.add(BottomNavigationBarItem(
         icon: Icon(ids[i]),
-        label: l10n(ls[i]),
+        label: l10n(context, ls[i]),
       ));
     }
 
@@ -121,7 +121,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
     for (int i = 0; i < ids.length; i++) {
       destinations.add(NavigationRailDestination(
         icon: Icon(ids[i]),
-        label: Text(l10n(ls[i])),
+        label: Text(l10n(context, ls[i])),
       ));
     }
 

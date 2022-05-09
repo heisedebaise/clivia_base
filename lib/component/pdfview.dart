@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 
-import '../util/l10n.dart';
 import '../util/context.dart';
+import '../util/l10n.dart';
 
 class Pdfview extends StatefulWidget {
   final String path;
@@ -19,7 +19,7 @@ class _PdfviewState extends State<Pdfview> {
 
   @override
   Widget build(BuildContext context) {
-    if (Context.isLinux) return Center(child: Text(l10n('not-currently-supported')));
+    if (Context.isLinux) return Center(child: Text(l10n(context, 'not-currently-supported')));
 
     if (Context.isWindows) {
       controller = PdfController(document: PdfDocument.openFile(widget.path));
