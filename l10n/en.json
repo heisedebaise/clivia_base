@@ -47,6 +47,14 @@
       "fail": "Failed to upload picture"
     }
   },
+  "language": {
+    "": "Language",
+    "select": "Select your language"
+  },
+  "dark": {
+    "": "Dark mode",
+    "explain": "The interface is mainly black, which helps to save power and reduce the damage of light to the eyes"
+  },
   "not-currently-supported": "Not currently supported",
   "failure": "unknow error!"
 }
