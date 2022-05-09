@@ -1,9 +1,12 @@
 {
   "unset": "Unset",
   "save": "Save",
+  "delete": "Delete",
   "ok": "OK",
   "submit": "Submit",
   "cancel": "Cancel",
+  "empty": "Empty",
+  "nodata": "No data",
   "http": {
     "error": "HTTP request error"
   },

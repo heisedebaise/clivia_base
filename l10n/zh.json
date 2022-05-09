@@ -1,9 +1,12 @@
 {
   "unset": "未设置",
   "save": "保存",
+  "delete": "删除",
   "ok": "确定",
   "submit": "提交",
   "cancel": "取消",
+  "empty": "清空",
+  "nodata": "暂无数据",
   "http": {
     "error": "HTTP请求错误"
   },

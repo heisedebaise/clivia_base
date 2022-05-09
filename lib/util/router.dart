@@ -7,5 +7,5 @@ class PageRouter {
         MaterialPageRoute(builder: (context) => widget),
       );
 
-  static void pop() => Navigator.of(Context.context!).pop();
+  static void pop([dynamic data]) => Navigator.of(Context.context!).pop(data);
 }
