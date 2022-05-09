@@ -51,7 +51,7 @@ class L10n {
   }
 
   static String get(BuildContext? context, String key, [List<dynamic>? args]) {
-    String k = '${(context ?? Context.context)?.watch<Notifier>().locale ?? _locale}.$key';
+    String k = '${context?.watch<Notifier>().locale ?? _locale}.$key';
     if (!_map.containsKey(k)) return key;
 
     String value = _map[k] ?? key;
