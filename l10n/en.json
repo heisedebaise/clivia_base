@@ -55,6 +55,20 @@
     "": "Dark mode",
     "explain": "The interface is mainly black, which helps to save power and reduce the damage of light to the eyes"
   },
+  "feedback": {
+    "": "Feedback",
+    "memo": "Your comments and suggestions are very important to us, thank you very much for your support!"
+  },
+  "version": {
+    "": "Version",
+    "forward": "Go to update"
+  },
+  "upload-log": {
+    "": "Upload Log",
+    "memo": "The uploaded log is only used to find bugs and will be deleted immediately after troubleshooting. Thank you very much for your support!"
+  },
+  "privacy-agreement": "Privacy Agreement",
+  "about-us": "About Us",
   "not-currently-supported": "Not currently supported",
   "failure": "unknow error!"
 }

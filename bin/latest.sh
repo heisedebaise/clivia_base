@@ -15,6 +15,7 @@ dependencies=(
  flutter_easyloading
  gesture_password_widget
  qr_code_scanner
+ badges
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

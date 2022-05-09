@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  badges: ^2.0.2
   dio: ^4.0.6
   extended_image: ^6.0.3
   file_picker: ^4.5.1
