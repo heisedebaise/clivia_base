@@ -141,7 +141,7 @@ class Http {
   }
 
   static String _url(String uri) {
-    if (Context.isWeb) return uri;
+    // if (Context.isWeb) return uri;
 
     return _host!() + uri;
   }

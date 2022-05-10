@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clivia_base/util/context.dart';
 import 'package:flutter/material.dart';
 
 import '../util/http.dart';
@@ -34,6 +35,8 @@ class _CachedImageState extends State<CachedImage> {
   }
 
   void load() {
+    if (Context.isWeb) return;
+
     if (widget.uri == '') {
       if (mounted) {
         setState(() {
@@ -58,7 +61,14 @@ class _CachedImageState extends State<CachedImage> {
   }
 
   @override
-  Widget build(BuildContext context) => exists ? image() : empty();
+  Widget build(BuildContext context) => Context.isWeb ? web() : (exists ? image() : empty());
+
+  Widget web() => Image.network(
+        Http.url(widget.uri),
+        width: widget.width,
+        height: widget.height,
+        errorBuilder: (context, error, stackTrace) => empty(),
+      );
 
   Widget image() => Image.file(
         File(path),
