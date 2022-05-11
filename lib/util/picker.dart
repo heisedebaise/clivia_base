@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
@@ -62,7 +61,3 @@ String _imageBase64(PlatformFile file) {
 
   return 'data:image/$type;base64,${base64Encode(file.bytes!)}';
 }
-
-String getContentTypeFromBase64(String base64) => base64.substring(5, base64.indexOf(';'));
-
-Uint8List getBytesFromBase64(String base64) => base64Decode(base64.substring(base64.indexOf(',') + 1));

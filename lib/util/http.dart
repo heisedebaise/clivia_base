@@ -43,6 +43,17 @@ class Http {
   }
 
   static Future<Map<String, dynamic>?> upload(String name, {String? file, List<int>? bytes, String? filename, String? contentType}) async {
+    if (file != null && file.startsWith('data:')) {
+      String contentType = file.substring(5, file.indexOf(';'));
+
+      return await Http.post('/photon/ctrl/upload', {
+        'name': name,
+        'contentType': contentType,
+        'fileName': contentType.replaceAll('/', '.'),
+        'base64': file.substring(file.indexOf(',') + 1),
+      });
+    }
+
     MultipartFile? mf;
     MediaType? mt = contentType == null ? null : MediaType.parse(contentType);
     if (file != null) {
@@ -79,7 +90,7 @@ class Http {
     } on Exception {
       return Future.value({
         'code': 500,
-        'message': Context.context == null ? 'HTTP request error' : l10n(null,'http.error'),
+        'message': Context.context == null ? 'HTTP request error' : l10n(null, 'http.error'),
       });
     }
   }
@@ -141,7 +152,7 @@ class Http {
   }
 
   static String _url(String uri) {
-    // if (Context.isWeb) return uri;
+    if (Context.isWeb) return uri;
 
     return _host!() + uri;
   }
