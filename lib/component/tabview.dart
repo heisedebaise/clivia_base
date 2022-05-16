@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class Tabview extends StatefulWidget {
   final int length;
+  final bool tabScrollable;
   final List<Widget> Function() tabs;
-  final List<Widget> Function(TabController controller) body;
+  final List<Widget> Function(TabController controller) bodies;
 
-  const Tabview({Key? key, required this.length, required this.tabs, required this.body}) : super(key: key);
+  const Tabview({Key? key, required this.length, this.tabScrollable = false, required this.tabs, required this.bodies}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TabviewState();
@@ -28,11 +29,13 @@ class _TabviewState extends State<Tabview> with SingleTickerProviderStateMixin {
         appBar: AppBar(
           flexibleSpace: SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Expanded(child: SizedBox()),
                 TabBar(
                   tabs: widget.tabs(),
                   controller: controller,
+                  isScrollable: widget.tabScrollable,
                 ),
               ],
             ),
@@ -42,8 +45,14 @@ class _TabviewState extends State<Tabview> with SingleTickerProviderStateMixin {
           child: TabBarView(
             controller: controller,
             physics: const BouncingScrollPhysics(),
-            children: widget.body(controller),
+            children: widget.bodies(controller),
           ),
         ),
       );
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 }
