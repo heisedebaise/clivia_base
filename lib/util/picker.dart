@@ -7,9 +7,9 @@ import 'context.dart';
 
 ImagePicker _imagePicker = ImagePicker();
 
-Future<String?> pickImage(ImageSource source) async {
+Future<String?> pickImage([bool camera = false]) async {
   if (Context.isMobile) {
-    XFile? xfile = await _imagePicker.pickImage(source: source);
+    XFile? xfile = await _imagePicker.pickImage(source: camera ? ImageSource.camera : ImageSource.gallery);
 
     return Future.value(xfile?.path);
   }

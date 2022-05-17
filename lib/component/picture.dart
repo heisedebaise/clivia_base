@@ -5,7 +5,6 @@ import 'package:clivia_base/component/dividers.dart';
 import 'package:clivia_base/util/notice.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../util/context.dart';
 import '../util/http.dart';
@@ -153,7 +152,7 @@ class _PicturePageState extends State<PicturePage> {
 
   void pick() {
     if (!Context.isMobile) {
-      pickFile(ImageSource.gallery);
+      pickFile(false);
 
       return;
     }
@@ -167,29 +166,29 @@ class _PicturePageState extends State<PicturePage> {
           pickerItem(
             Icons.photo_camera,
             l10n(context, 'picture.camera'),
-            ImageSource.camera,
+            true,
           ),
           Dividers.line,
           pickerItem(
             Icons.photo_album,
             l10n(context, 'picture.album'),
-            ImageSource.gallery,
+            false,
           )
         ],
       ),
     );
   }
 
-  Widget pickerItem(IconData icon, String title, ImageSource source) => ListTile(
+  Widget pickerItem(IconData icon, String title, [bool camera = false]) => ListTile(
         leading: Icon(icon),
         title: Text(title),
         onTap: () {
-          pickFile(source);
+          pickFile(camera);
         },
       );
 
-  Future<void> pickFile(ImageSource source) async {
-    String? file = await pickImage(source);
+  Future<void> pickFile(bool camera) async {
+    String? file = await pickImage(camera);
     if (file == null) return;
 
     setState(() {
