@@ -10,6 +10,7 @@ dependencies=(
  file_picker
  image
  extended_image
+ mime
  webview_flutter
  pdfx
  flutter_easyloading

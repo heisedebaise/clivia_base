@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:mime/mime.dart';
 
 import 'context.dart';
 import 'generator.dart';
@@ -55,6 +56,7 @@ class Http {
     }
 
     MultipartFile? mf;
+    if ((contentType == null || contentType.isEmpty) && file != null) contentType = lookupMimeType(file);
     MediaType? mt = contentType == null ? null : MediaType.parse(contentType);
     if (file != null) {
       mf = await MultipartFile.fromFile(file, filename: filename, contentType: mt);
