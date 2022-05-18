@@ -34,8 +34,8 @@ class _PicturePageState extends State<PicturePage> {
 
   @override
   void initState() {
-    super.initState();
     local = widget.local;
+    super.initState();
   }
 
   @override
@@ -188,7 +188,7 @@ class _PicturePageState extends State<PicturePage> {
       );
 
   Future<void> pickFile(bool camera) async {
-    String? file = await pickImage(camera);
+    String? file = await Picker.pickImage(camera);
     if (file == null) return;
 
     setState(() {
