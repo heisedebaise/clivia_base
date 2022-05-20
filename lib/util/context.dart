@@ -122,7 +122,7 @@ class Context {
 
   static ThemeData get theme {
     String theme = get('theme', defaultValue: '');
-    if (theme == '' && SchedulerBinding.instance!.window.platformBrightness == Brightness.dark) {
+    if (theme == '' && SchedulerBinding.instance.window.platformBrightness == Brightness.dark) {
       theme = 'dark';
     }
 
