@@ -55,7 +55,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
   @override
   void initState() {
     Upgrader.latest(context);
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
