@@ -51,7 +51,7 @@ class L10n {
   }
 
   static String get(BuildContext? context, String key, [List<dynamic>? args]) {
-    String k = '${context == null ? _locale : context.watch<Notifier>().locale}.$key';
+    String k = '${_watch(context)}.$key';
     if (!_map.containsKey(k)) return key;
 
     String value = _map[k] ?? key;
@@ -64,6 +64,14 @@ class L10n {
     return value;
   }
 
+  static String? _watch(BuildContext? context) {
+    try {
+      return context?.watch<Notifier>().locale;
+    } catch (e) {
+      return _locale;
+    }
+  }
+
   static Future<void> setLocale(BuildContext context, String locale) async {
     _locale = locale;
     await Context.set(_language, _locale);
@@ -73,4 +81,5 @@ class L10n {
   static String get locale => _locale;
 }
 
-String l10n(BuildContext? context, String key, [List<dynamic>? args]) => L10n.get(context, key, args);
+String l10n(BuildContext? context, String key, [List<dynamic>? args]) =>
+    L10n.get(context, key, args);
