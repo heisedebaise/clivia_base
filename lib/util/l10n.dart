@@ -81,5 +81,4 @@ class L10n {
   static String get locale => _locale;
 }
 
-String l10n(BuildContext? context, String key, [List<dynamic>? args]) =>
-    L10n.get(context, key, args);
+String l10n(BuildContext? context, String key, [List<dynamic>? args]) => L10n.get(context, key, args);
