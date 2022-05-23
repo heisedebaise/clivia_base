@@ -17,6 +17,7 @@ dependencies=(
  gesture_password_widget
  qr_code_scanner
  badges
+ flutter_datetime_picker
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

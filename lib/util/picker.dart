@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:clivia_base/util/l10n.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'context.dart';
 import 'http.dart';
 
@@ -78,5 +80,17 @@ class Picker {
     Map<String, dynamic>? map = await Http.upload(name, file: file);
 
     return Future.value(map == null || !map.containsKey('path') ? null : map['path']);
+  }
+
+  static Future<DateTime?> pickDateTime(BuildContext context, [DateTime? current]) async => DatePicker.showDateTimePicker(
+        context,
+        locale: _locale(),
+        currentTime: current,
+      );
+
+  static LocaleType _locale() {
+    if (L10n.locale == 'zh') return LocaleType.zh;
+
+    return LocaleType.en;
   }
 }

@@ -66,7 +66,7 @@ class L10n {
 
   static String? _watch(BuildContext? context) {
     try {
-      return context?.watch<Notifier>().locale;
+      return context?.watch<Notifier>().locale ?? _locale;
     } catch (e) {
       return _locale;
     }
