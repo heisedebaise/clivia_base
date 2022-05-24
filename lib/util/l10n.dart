@@ -65,8 +65,10 @@ class L10n {
   }
 
   static String? _watch(BuildContext? context) {
+    if (context == null) return _locale;
+
     try {
-      return context?.watch<Notifier>().locale ?? _locale;
+      return context.watch<Notifier>().locale;
     } catch (e) {
       return _locale;
     }
@@ -81,4 +83,5 @@ class L10n {
   static String get locale => _locale;
 }
 
-String l10n(BuildContext? context, String key, [List<dynamic>? args]) => L10n.get(context, key, args);
+String l10n(BuildContext? context, String key, [List<dynamic>? args]) =>
+    L10n.get(context, key, args);
