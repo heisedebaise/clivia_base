@@ -17,9 +17,7 @@ class Avatar extends StatelessWidget {
         borderRadius: BorderRadius.circular(size / 8),
         child: GestureDetector(
           child: _image(),
-          onTap: () {
-            if (uid == '') return;
-          },
+          onTap: uid == '' ? null : _tap,
         ),
       );
 
@@ -65,4 +63,6 @@ class Avatar extends StatelessWidget {
       ),
     );
   }
+
+  void _tap() {}
 }
