@@ -5,19 +5,26 @@ import '../util/http.dart';
 import 'cachedimage.dart';
 
 class Avatar extends StatelessWidget {
-  final String uid;
   final String uri;
   final String nick;
   final double size;
+  final bool circular;
 
-  const Avatar({Key? key, this.uid = '', this.uri = '', this.nick = '', this.size = 64}) : super(key: key);
+  const Avatar({Key? key, this.uri = '', this.nick = '', this.size = 64, this.circular = false}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ClipRRect(
-        borderRadius: BorderRadius.circular(size / 8),
-        child: GestureDetector(
+  Widget build(BuildContext context) => circular ? _oval() : _rect();
+
+  Widget _oval() => Align(
+        child: ClipOval(
           child: _image(),
-          onTap: uid == '' ? null : _tap,
+        ),
+      );
+
+  Widget _rect() => Align(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(size / 8),
+          child: _image(),
         ),
       );
 
@@ -63,6 +70,4 @@ class Avatar extends StatelessWidget {
       ),
     );
   }
-
-  void _tap() {}
 }
