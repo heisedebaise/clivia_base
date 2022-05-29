@@ -6,6 +6,7 @@
   "submit": "Submit",
   "cancel": "Cancel",
   "empty": "Empty",
+  "more": "More",
   "nodata": "No data",
   "http": {
     "error": "HTTP request error"

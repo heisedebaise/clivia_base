@@ -6,6 +6,7 @@
   "submit": "提交",
   "cancel": "取消",
   "empty": "清空",
+  "more": "更多",
   "nodata": "暂无数据",
   "http": {
     "error": "HTTP请求错误"
