@@ -50,8 +50,6 @@ class Main extends StatelessWidget {
 }
 
 class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingObserver {
-  int navigation = 0;
-
   @override
   void initState() {
     Upgrader.latest(context);
@@ -73,11 +71,9 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
         bottomNavigationBar: BottomNavigationBar(
           items: items(),
           type: BottomNavigationBarType.fixed,
-          currentIndex: navigation,
+          currentIndex: context.watch<Notifier>().navigation,
           onTap: (int index) {
-            setState(() {
-              navigation = index;
-            });
+            Provider.of<Notifier>(context, listen: false).navigation = index;
           },
         ),
       );
@@ -100,13 +96,11 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
         body: Row(
           children: [
             NavigationRail(
-              selectedIndex: navigation,
+              selectedIndex: context.watch<Notifier>().navigation,
               destinations: destinations(),
               labelType: NavigationRailLabelType.all,
               onDestinationSelected: (int index) {
-                setState(() {
-                  navigation = index;
-                });
+                Provider.of<Notifier>(context, listen: false).navigation = index;
               },
             ),
             Expanded(child: body()),
