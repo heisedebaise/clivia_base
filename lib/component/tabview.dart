@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class Tabview extends StatefulWidget {
   final int length;
+  final int index;
   final bool tabScrollable;
   final List<Widget> tabs;
   final List<Widget> bodies;
 
-  const Tabview({Key? key, required this.length, this.tabScrollable = false, required this.tabs, required this.bodies}) : super(key: key);
+  const Tabview({Key? key, required this.length, this.index = 0, this.tabScrollable = false, required this.tabs, required this.bodies}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TabviewState();
@@ -16,6 +17,7 @@ class _TabviewState extends State<Tabview> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
         length: widget.length,
+        initialIndex: widget.index,
         child: Scaffold(
           appBar: AppBar(
             flexibleSpace: SafeArea(

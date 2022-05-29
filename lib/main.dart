@@ -73,7 +73,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
           type: BottomNavigationBarType.fixed,
           currentIndex: context.watch<Notifier>().navigation,
           onTap: (int index) {
-            Provider.of<Notifier>(context, listen: false).navigation = index;
+            Notifier.setNavigation(context, index);
           },
         ),
       );
@@ -100,7 +100,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
               destinations: destinations(),
               labelType: NavigationRailLabelType.all,
               onDestinationSelected: (int index) {
-                Provider.of<Notifier>(context, listen: false).navigation = index;
+                Notifier.setNavigation(context, index);
               },
             ),
             Expanded(child: body()),
