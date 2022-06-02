@@ -7,12 +7,13 @@ import '../util/http.dart';
 import '../util/io.dart';
 
 class CachedImage extends StatefulWidget {
-  const CachedImage({Key? key, required this.uri, this.width, this.height, this.placeholder}) : super(key: key);
-
   final String uri;
   final double? width;
   final double? height;
+  final BoxFit fit;
   final Widget Function(BuildContext context)? placeholder;
+
+  const CachedImage({Key? key, required this.uri, this.width, this.height, this.fit = BoxFit.cover, this.placeholder}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _CachedImageState();
@@ -67,6 +68,7 @@ class _CachedImageState extends State<CachedImage> {
         Http.url(widget.uri),
         width: widget.width,
         height: widget.height,
+        fit: widget.fit,
         errorBuilder: (context, error, stackTrace) => empty(),
       );
 
@@ -74,6 +76,7 @@ class _CachedImageState extends State<CachedImage> {
         File(path),
         width: widget.width,
         height: widget.height,
+        fit: widget.fit,
         errorBuilder: (context, error, stackTrace) => empty(),
       );
 
