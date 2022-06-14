@@ -25,7 +25,7 @@ class Version extends StatelessWidget {
       );
 
   Widget name(BuildContext context) {
-    String name = Upgrader.name();
+    String name = Upgrader.name;
     if (name.isEmpty) return Container();
 
     Text text = Text(
@@ -33,7 +33,7 @@ class Version extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyText2,
     );
 
-    return Upgrader.newer() ? Badge(child: text) : text;
+    return Upgrader.newer ? Badge(child: text) : text;
   }
 }
 
@@ -54,7 +54,7 @@ class VersionPage extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
                 // Text(S.of(context).title),
-                Text(Upgrader.name() + '.' + Upgrader.version.toString()),
+                Text(Upgrader.name + '.' + Upgrader.version.toString()),
               ],
             ),
             Card(
@@ -63,12 +63,12 @@ class VersionPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text(Upgrader.name() + '.' + Upgrader.version.toString()),
+                    child: Text(Upgrader.name + '.' + Upgrader.version.toString()),
                   ),
                   Dividers.line,
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text(Upgrader.explain()),
+                    child: Text(Upgrader.explain),
                   ),
                 ],
               ),
@@ -79,7 +79,7 @@ class VersionPage extends StatelessWidget {
       );
 
   Widget newer(BuildContext context) {
-    if (!Upgrader.newer()) return Container();
+    if (!Upgrader.newer) return Container();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),

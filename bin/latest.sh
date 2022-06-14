@@ -18,6 +18,7 @@ dependencies=(
  qr_code_scanner
  badges
  flutter_datetime_picker
+ package_info_plus
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

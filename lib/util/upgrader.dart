@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:clivia_base/component/dividers.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'context.dart';
@@ -9,36 +8,39 @@ import 'http.dart';
 import 'l10n.dart';
 
 class Upgrader {
-  static const int version = 1;
-  static Map<String, dynamic> _version = {'version': version};
+  static int _number = 0;
+  static Map<String, dynamic> _version = {'version': _number};
 
   static Future<void> latest(BuildContext context) async {
-    int client = _client();
-    if (client == -1) return Future.value(null);
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    _number = int.tryParse(packageInfo.buildNumber) ?? 0;
 
-    Map<String, dynamic>? map = await Http.service('/upgrader/latest', data: {'client': '$client'});
+    String client = _client();
+    if (client.isEmpty) return Future.value(null);
+
+    Map<String, dynamic>? map = await Http.service('/upgrader/latest', data: {'client': client});
     if (map == null || map.isEmpty || !map.containsKey('version')) return Future.value(null);
 
     _version = map;
-    if (newer()) _show(context);
+    if (newer) _show(context);
 
     return Future.value(null);
   }
 
-  static int _client() {
-    if (Context.isWeb) return 5;
+  static String _client() {
+    if (Context.isAndroid) return 'android';
 
-    if (Context.isAndroid) return 0;
+    if (Context.isIOS) return 'ios';
 
-    if (Context.isIOS) return 1;
+    if (Context.isWindows) return 'windows';
 
-    if (Context.isWindows) return 2;
+    if (Context.isMacOS) return 'macos';
 
-    if (Context.isMacOS) return 3;
+    if (Context.isLinux) return 'linux';
 
-    if (Platform.isLinux) return 4;
+    if (Context.isWeb) return 'web';
 
-    return -1;
+    return '';
   }
 
   static Future<void> _show(BuildContext context) async => showDialog<void>(
@@ -50,12 +52,12 @@ class Upgrader {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name()),
+                Text(name),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: Dividers.line,
                 ),
-                Text(explain()),
+                Text(explain),
               ],
             ),
             actions: _actions(context),
@@ -80,11 +82,13 @@ class Upgrader {
     return list;
   }
 
-  static bool newer() => _get('version', version) > version;
+  static bool get newer => _get('version', _number) > _number;
 
-  static String name() => _get('name', '');
+  static String get name => _get('name', '');
 
-  static String explain() {
+  static int get version => _number;
+
+  static String get explain {
     Map<String, dynamic>? map = _get('explain', null);
     if (map == null) return '';
 
