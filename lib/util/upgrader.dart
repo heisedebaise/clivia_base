@@ -44,24 +44,25 @@ class Upgrader {
   }
 
   static Future<void> _show(BuildContext context) async => showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-            title: Text(l10n(context, 'upgrader.newer')),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(name),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 2),
-                  child: Dividers.line,
-                ),
-                Text(explain),
-              ],
-            ),
-            actions: _actions(context),
-          ));
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          title: Text(l10n(context, 'upgrader.newer')),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: Dividers.line,
+              ),
+              Text(explain),
+            ],
+          ),
+          actions: _actions(context),
+        ),
+      );
 
   static List<Widget> _actions(BuildContext context) {
     List<Widget> list = [
