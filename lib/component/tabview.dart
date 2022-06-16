@@ -7,13 +7,10 @@ class Tabview extends StatefulWidget {
   final bool tabScrollable;
   final List<Widget> tabs;
   final List<Widget> bodies;
-  final GlobalKey<ScaffoldState> _controllerKey = GlobalKey<ScaffoldState>();
   static final Map<String, GlobalKey<ScaffoldState>> _map = {};
 
   Tabview({Key? key, this.name, required this.length, this.index = 0, this.tabScrollable = false, required this.tabs, required this.bodies}) : super(key: key) {
-    if (name != null) {
-      _map[name!] = _controllerKey;
-    }
+    if (name != null) _map[name!] = GlobalKey<ScaffoldState>();
   }
 
   @override
@@ -33,7 +30,7 @@ class _TabviewState extends State<Tabview> {
         length: widget.length,
         initialIndex: widget.index,
         child: Scaffold(
-          key: widget._controllerKey,
+          key: widget.name == null ? null : Tabview._map[widget.name],
           appBar: AppBar(
             flexibleSpace: SafeArea(
               child: Column(

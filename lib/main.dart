@@ -60,7 +60,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
   @override
   Widget build(BuildContext context) => OrientationBuilder(
         builder: (BuildContext context, Orientation orientation) {
-          Context.orientation(orientation);
+          Context.orientation = orientation;
 
           return orientation == Orientation.portrait ? portrait() : landscape();
         },
