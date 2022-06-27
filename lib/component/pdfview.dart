@@ -19,7 +19,7 @@ class _PdfviewState extends State<Pdfview> {
 
   @override
   Widget build(BuildContext context) {
-    if (Context.isLinux) return Center(child: Text(l10n(context, 'not-currently-supported')));
+    if (Context.isLinux) return Center(child: Text(l10n(null, 'not-currently-supported')));
 
     if (Context.isWindows) {
       controller = PdfController(document: PdfDocument.openFile(widget.path));

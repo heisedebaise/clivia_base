@@ -47,7 +47,7 @@ class Upgrader {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          title: Text(l10n(context, 'upgrader.newer')),
+          title: Text(l10n(null, 'upgrader.newer')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,13 +67,13 @@ class Upgrader {
   static List<Widget> _actions(BuildContext context) {
     List<Widget> list = [
       TextButton(
-        child: Text(l10n(context, 'upgrader.forward')),
+        child: Text(l10n(null, 'upgrader.forward')),
         onPressed: forward,
       ),
     ];
     if (_get('forced', 0) == 0) {
       list.add(TextButton(
-        child: Text(l10n(context, 'upgrader.cancel')),
+        child: Text(l10n(null, 'upgrader.cancel')),
         onPressed: () {
           Navigator.of(context).pop();
         },

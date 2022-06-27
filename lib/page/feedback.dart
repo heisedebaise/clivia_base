@@ -30,14 +30,14 @@ class _FeedBackPageState extends State<FeedBackPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n(context, 'feedback'),
+        title: l10n(null, 'feedback'),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n(context, 'feedback.memo'),
+                l10n(null, 'feedback.memo'),
                 style: Theme.of(context).textTheme.bodyText2,
               ),
               Expanded(
@@ -70,7 +70,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                   onPressed: () async {
                     Navigator.pop(context);
                   },
-                  child: Text(l10n(context, 'submit')),
+                  child: Text(l10n(null, 'submit')),
                 ),
               ),
             ],

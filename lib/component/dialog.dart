@@ -17,7 +17,7 @@ class Alert extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: TextButton(
-              child: Text(l10n(context, 'ok')),
+              child: Text(l10n(null, 'ok')),
               onPressed: () {
                 PageRouter.pop(context);
               },
@@ -40,13 +40,13 @@ class Confirm extends StatelessWidget {
         content: content,
         actions: [
           TextButton(
-            child: Text(l10n(context, 'cancel')),
+            child: Text(l10n(null, 'cancel')),
             onPressed: () {
               PageRouter.pop(context);
             },
           ),
           ElevatedButton(
-            child: Text(l10n(context, 'ok')),
+            child: Text(l10n(null, 'ok')),
             onPressed: () async {
               if (await ok()) {
                 PageRouter.pop(context);

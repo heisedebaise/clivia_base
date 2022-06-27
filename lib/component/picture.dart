@@ -60,7 +60,7 @@ class _PicturePageState extends State<PicturePage> {
                 List<int>? data = await cropImage(editor.currentState!, rawImageData());
                 if (data == null) {
                   Notice.loading(false);
-                  Notice.error(0, l10n(context, 'picture.crop.fail'));
+                  Notice.error(0, l10n(null, 'picture.crop.fail'));
 
                   return;
                 }
@@ -68,7 +68,7 @@ class _PicturePageState extends State<PicturePage> {
                 Map<String, dynamic>? map = await Http.upload(widget.upload, bytes: data, filename: 'image.jpg', contentType: 'image/jpeg');
                 if (map == null || !map.containsKey('path')) {
                   Notice.loading(false);
-                  Notice.error(0, l10n(context, 'picture.upload.fail'));
+                  Notice.error(0, l10n(null, 'picture.upload.fail'));
 
                   return;
                 }
@@ -84,11 +84,11 @@ class _PicturePageState extends State<PicturePage> {
         body: body(),
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            toolItem(Icons.crop, l10n(context, 'picture.crop')),
-            toolItem(Icons.flip, l10n(context, 'picture.flip')),
-            toolItem(Icons.rotate_left, l10n(context, 'picture.rotate.left')),
-            toolItem(Icons.rotate_right, l10n(context, 'picture.rotate.right')),
-            toolItem(Icons.restore, l10n(context, 'picture.reset')),
+            toolItem(Icons.crop, l10n(null, 'picture.crop')),
+            toolItem(Icons.flip, l10n(null, 'picture.flip')),
+            toolItem(Icons.rotate_left, l10n(null, 'picture.rotate.left')),
+            toolItem(Icons.rotate_right, l10n(null, 'picture.rotate.right')),
+            toolItem(Icons.restore, l10n(null, 'picture.reset')),
           ],
           type: BottomNavigationBarType.fixed,
           currentIndex: 0,
@@ -165,13 +165,13 @@ class _PicturePageState extends State<PicturePage> {
         children: [
           pickerItem(
             Icons.photo_camera,
-            l10n(context, 'picture.camera'),
+            l10n(null, 'picture.camera'),
             true,
           ),
           Dividers.line,
           pickerItem(
             Icons.photo_album,
-            l10n(context, 'picture.album'),
+            l10n(null, 'picture.album'),
             false,
           )
         ],

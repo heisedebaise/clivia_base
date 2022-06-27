@@ -24,7 +24,7 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n(context, 'about-us'),
+        title: l10n(null, 'about-us'),
         body: const Webview(
           url: 'https://github.com/heisedebaise/clivia-app',
         ),

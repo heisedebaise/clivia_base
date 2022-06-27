@@ -59,7 +59,7 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n(context, 'privacy-agreement'),
+        title: l10n(null, 'privacy-agreement'),
         body: Pdfview(path: path),
       );
 }

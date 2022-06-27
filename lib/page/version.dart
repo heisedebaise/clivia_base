@@ -43,7 +43,7 @@ class VersionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n(context, 'version'),
+        title: l10n(null, 'version'),
         body: ListView(
           children: [
             Column(
@@ -87,7 +87,7 @@ class VersionPage extends StatelessWidget {
         width: double.infinity,
         child: ElevatedButton(
           onPressed: Upgrader.forward,
-          child: Text(l10n(context, 'version.forward')),
+          child: Text(l10n(null, 'version.forward')),
         ),
       ),
     );
