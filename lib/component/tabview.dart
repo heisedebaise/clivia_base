@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Tabview extends StatefulWidget {
   final String? name;
+  final String? title;
   final int length;
   final int index;
   final bool tabScrollable;
@@ -9,7 +10,16 @@ class Tabview extends StatefulWidget {
   final List<Widget> bodies;
   static final Map<String, GlobalKey<ScaffoldState>> _map = {};
 
-  Tabview({Key? key, this.name, required this.length, this.index = 0, this.tabScrollable = false, required this.tabs, required this.bodies}) : super(key: key) {
+  Tabview({
+    Key? key,
+    this.name,
+    this.title,
+    required this.length,
+    this.index = 0,
+    this.tabScrollable = false,
+    required this.tabs,
+    required this.bodies,
+  }) : super(key: key) {
     if (name != null) _map[name!] = GlobalKey<ScaffoldState>();
   }
 
@@ -32,6 +42,7 @@ class _TabviewState extends State<Tabview> {
         child: Scaffold(
           key: widget.name == null ? null : Tabview._map[widget.name],
           appBar: AppBar(
+            title: widget.title == null ? null : Text(widget.title ?? ''),
             flexibleSpace: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
