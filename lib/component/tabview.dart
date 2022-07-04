@@ -43,6 +43,7 @@ class _TabviewState extends State<Tabview> {
           key: widget.name == null ? null : Tabview._map[widget.name],
           appBar: AppBar(
             title: widget.title == null ? null : Text(widget.title ?? ''),
+            centerTitle: true,
             flexibleSpace: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
