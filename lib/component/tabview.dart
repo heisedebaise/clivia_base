@@ -41,22 +41,7 @@ class _TabviewState extends State<Tabview> {
         initialIndex: widget.index,
         child: Scaffold(
           key: widget.name == null ? null : Tabview._map[widget.name],
-          appBar: AppBar(
-            title: widget.title == null ? null : Text(widget.title ?? ''),
-            centerTitle: true,
-            flexibleSpace: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(child: SizedBox()),
-                  TabBar(
-                    tabs: widget.tabs,
-                    isScrollable: widget.tabScrollable,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          appBar: appbar(),
           body: SafeArea(
             child: TabBarView(
               physics: const BouncingScrollPhysics(),
@@ -65,4 +50,32 @@ class _TabviewState extends State<Tabview> {
           ),
         ),
       );
+
+  AppBar appbar() {
+    if (widget.title == null) {
+      return AppBar(
+        flexibleSpace: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Expanded(child: SizedBox()),
+              TabBar(
+                tabs: widget.tabs,
+                isScrollable: widget.tabScrollable,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return AppBar(
+      title: Text(widget.title ?? ''),
+      centerTitle: true,
+      bottom: TabBar(
+        tabs: widget.tabs,
+        isScrollable: widget.tabScrollable,
+      ),
+    );
+  }
 }
