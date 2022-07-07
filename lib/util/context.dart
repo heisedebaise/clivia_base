@@ -132,7 +132,7 @@ class Context {
   static BuildContext? get context => navigatorKey.currentContext;
 
   static set orientation(Orientation orientation) {
-    _orientation = _orientation;
+    _orientation = orientation;
   }
 
   static bool get landscape => _orientation == Orientation.landscape;
