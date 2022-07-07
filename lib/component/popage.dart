@@ -42,6 +42,7 @@ class PopPage extends StatelessWidget {
             style: TextStyle(
               color: close ? Theme.of(context).textTheme.bodyText1?.color : Theme.of(context).appBarTheme.iconTheme?.color,
             ),
+            overflow: TextOverflow.ellipsis,
           ),
           centerTitle: true,
           actions: actions,
