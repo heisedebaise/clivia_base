@@ -3,6 +3,29 @@ import 'package:flutter/material.dart';
 import '../util/l10n.dart';
 import '../util/router.dart';
 
+class Dialog {
+  static Future<dynamic> alert(BuildContext context, {Widget? title, Widget? content}) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => Alert(
+        title: title,
+        content: content,
+      ),
+    );
+  }
+
+  static Future<dynamic> confirm(BuildContext context, {Widget? title, Widget? content, Future<bool> Function()? ok}) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => Confirm(
+        title: title,
+        content: content,
+        ok: ok,
+      ),
+    );
+  }
+}
+
 class Alert extends StatelessWidget {
   final Widget? title;
   final Widget? content;
@@ -30,9 +53,9 @@ class Alert extends StatelessWidget {
 class Confirm extends StatelessWidget {
   final Widget? title;
   final Widget? content;
-  final Future<bool> Function() ok;
+  final Future<bool> Function()? ok;
 
-  const Confirm({Key? key, this.title, this.content, required this.ok}) : super(key: key);
+  const Confirm({Key? key, this.title, this.content, this.ok}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -48,8 +71,8 @@ class Confirm extends StatelessWidget {
           ElevatedButton(
             child: Text(l10n(null, 'ok')),
             onPressed: () async {
-              if (await ok()) {
-                PageRouter.pop(context);
+              if (ok == null || await ok!()) {
+                PageRouter.pop(true);
               }
             },
           )
