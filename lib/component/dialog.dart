@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../util/l10n.dart';
 import '../util/router.dart';
 
-class Dialog {
+class Dialogs {
   static Future<dynamic> alert(BuildContext context, {Widget? title, Widget? content}) async {
     return showDialog(
       context: context,
