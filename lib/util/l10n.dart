@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -94,8 +94,7 @@ class L10n {
   }
 
   static void _setDefault() {
-    _default = Platform.localeName;
-    _default = _default.substring(0, _default.indexOf('_'));
+    _default = window.locale.languageCode;
   }
 
   static String get locale => _locale;
