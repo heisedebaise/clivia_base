@@ -10,16 +10,10 @@ class UploadLog extends StatelessWidget {
   Widget build(BuildContext context) => ListTile(
         title: Text(l10n(context, 'upload-log')),
         trailing: const Icon(Icons.keyboard_arrow_right),
-        onTap: () async {
-          await showDialog<void>(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) => Confirm(
-              content: Text(l10n(null, 'upload-log.memo')),
-              ok: () async {
-                return true;
-              },
-            ),
+        onTap: () {
+          Dialogs.confirm(
+            context,
+            content: Text(l10n(null, 'upload-log.memo')),
           );
         },
       );
