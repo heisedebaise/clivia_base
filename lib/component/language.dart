@@ -13,7 +13,13 @@ class Language extends StatefulWidget {
 }
 
 class _LanguageState extends State<Language> {
-  String key = L10n.locale;
+  late String key;
+
+  @override
+  void initState() {
+    key = L10n.localeFromContext;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => widget.icon ? icon() : list();

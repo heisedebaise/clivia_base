@@ -54,7 +54,8 @@
   },
   "language": {
     "": "Language",
-    "select": "Select your language"
+    "select": "Select your language",
+    "default": "Default"
   },
   "dark": {
     "": "Dark mode",

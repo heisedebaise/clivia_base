@@ -129,4 +129,10 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
   List<IconData> icons() => [];
 
   List<String> labels() => [];
+
+  @override
+  void didChangeLocales(List<Locale>? locales) {
+    L10n.changeDefaultLocal(context);
+    super.didChangeLocales(locales);
+  }
 }

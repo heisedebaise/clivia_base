@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,11 +14,13 @@ class L10n {
     'en': 'English',
     'zh': '简体中文',
   };
+  static String _default = '';
   static String _locale = '';
-  static final Map<String, String> languages = {};
+  static final Map<String, String> languages = {'': ''};
 
   static Future<void> load(List<String> locales, List<String> keys) async {
-    _locale = await Context.get(_language, defaultValue: 'en');
+    _setDefault();
+    _locale = await Context.get(_language, defaultValue: _default);
     for (String locale in locales) {
       languages[locale] = _languages[locale] ?? '';
       for (String key in keys) {
@@ -27,6 +31,7 @@ class L10n {
           Io.loadMap(k).then((map) => _load(map, locale));
         }
       }
+      languages[''] = get(null, 'language.default');
     }
   }
 
@@ -75,13 +80,27 @@ class L10n {
   }
 
   static Future<void> setLocale(BuildContext context, String locale) async {
-    _locale = locale;
+    _locale = locale.isEmpty ? _default : locale;
+    languages[''] = get(context, 'language.default');
     await Context.set(_language, _locale);
-    Provider.of<Notifier>(context, listen: false).locale = locale;
+    Provider.of<Notifier>(context, listen: false).locale = _locale;
+  }
+
+  static Future<void> changeDefaultLocal(BuildContext context) async {
+    if (localeFromContext.isNotEmpty) return;
+
+    _setDefault();
+    await setLocale(context, '');
+  }
+
+  static void _setDefault() {
+    _default = Platform.localeName;
+    _default = _default.substring(0, _default.indexOf('_'));
   }
 
   static String get locale => _locale;
+
+  static String get localeFromContext => Context.get(_language, defaultValue: '');
 }
 
-String l10n(BuildContext? context, String key, [List<dynamic>? args]) =>
-    L10n.get(context, key, args);
+String l10n(BuildContext? context, String key, [List<dynamic>? args]) => L10n.get(context, key, args);
