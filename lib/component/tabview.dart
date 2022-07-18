@@ -37,19 +37,19 @@ class Tabview extends StatefulWidget {
 class _TabviewState extends State<Tabview> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
-        length: widget.length,
-        initialIndex: widget.index,
-        child: Scaffold(
-          key: widget.name == null ? null : Tabview._map[widget.name],
-          appBar: appbar(),
-          body: SafeArea(
-            child: TabBarView(
-              physics: const BouncingScrollPhysics(),
-              children: widget.bodies,
-            ),
-          ),
+    length: widget.length,
+    initialIndex: widget.index,
+    child: Scaffold(
+      key: widget.name == null ? null : Tabview._map[widget.name],
+      appBar: appbar(),
+      body: SafeArea(
+        child: TabBarView(
+          physics: const BouncingScrollPhysics(),
+          children: widget.bodies,
         ),
-      );
+      ),
+    ),
+  );
 
   AppBar appbar() {
     if (widget.title == null) {
