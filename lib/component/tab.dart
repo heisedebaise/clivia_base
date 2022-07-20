@@ -21,7 +21,9 @@ class _TabviewState extends State<Tabview> {
   Widget build(BuildContext context) {
     List<Widget> children = [titles()];
     if (widget.divider) children.add(Dividers.line);
-    children.add(widget.bodies[index]);
+    children.add(GestureDetector(
+      child: widget.bodies[index],
+    ));
 
     return Column(
       mainAxisSize: MainAxisSize.min,
