@@ -34,7 +34,7 @@ class Context {
   static get isDesktop => !kIsWeb && (Platform.isWindows || Platform.isMacOS || Platform.isLinux);
 
   static Future<void> init() async {
-    if (kIsWeb) {
+    if (isWeb) {
       _sharedPreferences = await SharedPreferences.getInstance();
 
       return;
@@ -51,7 +51,7 @@ class Context {
   static dynamic get(String key, {dynamic defaultValue, bool memory = false}) {
     if (memory) return _memory.containsKey(key) ? _memory[key] : defaultValue;
 
-    if (kIsWeb) return _getSharedPreferences(key) ?? defaultValue;
+    if (isWeb) return _getSharedPreferences(key) ?? defaultValue;
 
     return _map[key] ?? defaultValue;
   }
@@ -73,7 +73,7 @@ class Context {
       return;
     }
 
-    if (kIsWeb) {
+    if (isWeb) {
       _sharedPreferences?.setString(key, json.encode({'value': value}));
 
       return;
@@ -92,7 +92,7 @@ class Context {
       return;
     }
 
-    if (kIsWeb) {
+    if (isWeb) {
       map.forEach((key, value) => _sharedPreferences?.setString(key, json.encode({'value': value})));
 
       return;
@@ -105,7 +105,7 @@ class Context {
   static Future<dynamic> remove(String key, {bool memory = false}) async {
     if (memory) return Future.value(_memory.remove(key));
 
-    if (kIsWeb) {
+    if (isWeb) {
       dynamic value = _getSharedPreferences(key);
       await _sharedPreferences?.remove(key);
 
