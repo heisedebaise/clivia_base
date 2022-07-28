@@ -7,8 +7,9 @@ class Tabview extends StatefulWidget {
   final List<Widget> bodies;
   final int index;
   final bool divider;
+  final bool scrollable;
 
-  const Tabview({Key? key, required this.titles, required this.bodies, this.index = 0, this.divider = true}) : super(key: key);
+  const Tabview({Key? key, required this.titles, required this.bodies, this.index = 0, this.divider = true, this.scrollable = false}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TabviewState();
@@ -16,14 +17,18 @@ class Tabview extends StatefulWidget {
 
 class _TabviewState extends State<Tabview> {
   late int index = widget.index;
+  late PageController controller = PageController(initialPage: widget.index);
 
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [titles()];
     if (widget.divider) children.add(Dividers.line);
-    children.add(GestureDetector(
-      child: widget.bodies[index],
-    ));
+    Widget pv = PageView(controller: controller, children: widget.bodies);
+    if (widget.scrollable) {
+      children.add(Expanded(child: pv));
+    } else {
+      children.add(pv);
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -44,6 +49,7 @@ class _TabviewState extends State<Tabview> {
           setState(() {
             index = i;
           });
+          controller.animateToPage(index, duration: const Duration(milliseconds: 250), curve: Curves.easeInOut);
         },
       ));
     }
@@ -55,5 +61,11 @@ class _TabviewState extends State<Tabview> {
         children: children,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
