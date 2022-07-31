@@ -1,12 +1,14 @@
 import 'dart:convert';
 
-import 'package:clivia_base/util/l10n.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'context.dart';
 import 'http.dart';
+import 'l10n.dart';
+import 'notice.dart';
 
 class Picker {
   static final ImagePicker _imagePicker = ImagePicker();
@@ -66,20 +68,40 @@ class Picker {
     return 'data:image/$type;base64,${base64Encode(file.bytes!)}';
   }
 
-  static Future<String?> uploadImage(String name, [bool camera = false]) async {
-    return _uploadPick(name, await pickImage(camera));
+  static Future<String?> uploadImage(String name, {bool camera = false, bool loading = false}) async {
+    return _uploadPick(name, await pickImage(camera), loading);
   }
 
-  static Future<String?> uploadFile(String name) async {
-    return _uploadPick(name, await pickFile());
+  static Future<List<Map<String, dynamic>>> uploadImages(String name, {bool loading = false}) async {
+    return _uploadPicks(name, await pickImages(), loading);
   }
 
-  static Future<String?> _uploadPick(String name, String? file) async {
+  static Future<String?> uploadFile(String name, {bool loading = false}) async {
+    return _uploadPick(name, await pickFile(), loading);
+  }
+
+  static Future<String?> _uploadPick(String name, String? file, [bool loading = false]) async {
     if (file == null || file.isEmpty) return Future.value(null);
 
+    if (loading) Notice.loading(true);
     Map<String, dynamic>? map = await Http.upload(name, file: file);
+    if (loading) Notice.loading(false);
 
     return Future.value(map == null || !map.containsKey('path') ? null : map['path']);
+  }
+
+  static Future<List<Map<String, dynamic>>> _uploadPicks(String name, List<String>? files, [bool loading = false]) async {
+    if (files == null || files.isEmpty) return Future.value([]);
+
+    if (loading) Notice.loading(true);
+    List<Map<String, dynamic>> list = [];
+    for (String file in files) {
+      Map<String, dynamic>? map = await Http.upload(name, file: file);
+      if (map != null && map.containsKey('path')) list.add(map);
+    }
+    if (loading) Notice.loading(false);
+
+    return Future.value(list);
   }
 
   static Future<DateTime?> pickDateTime(BuildContext context, [DateTime? current]) async => DatePicker.showDateTimePicker(
