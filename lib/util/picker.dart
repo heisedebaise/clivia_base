@@ -53,8 +53,8 @@ class Picker {
     return Future.value(list);
   }
 
-  static Future<String?> pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+  static Future<String?> pickFile({List<String>? suffixes}) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, allowedExtensions: suffixes);
 
     return Future.value(result?.paths.first);
   }
@@ -68,7 +68,7 @@ class Picker {
     return 'data:image/$type;base64,${base64Encode(file.bytes!)}';
   }
 
-  static Future<String?> uploadImage(String name, {bool camera = false, bool loading = false}) async {
+  static Future<Map<String, dynamic>?> uploadImage(String name, {bool camera = false, bool loading = false}) async {
     return _uploadPick(name, await pickImage(camera), loading);
   }
 
@@ -76,18 +76,18 @@ class Picker {
     return _uploadPicks(name, await pickImages(), loading);
   }
 
-  static Future<String?> uploadFile(String name, {bool loading = false}) async {
-    return _uploadPick(name, await pickFile(), loading);
+  static Future<Map<String, dynamic>?> uploadFile(String name, {bool loading = false, List<String>? suffixes}) async {
+    return _uploadPick(name, await pickFile(suffixes: suffixes), loading);
   }
 
-  static Future<String?> _uploadPick(String name, String? file, [bool loading = false]) async {
+  static Future<Map<String, dynamic>?> _uploadPick(String name, String? file, [bool loading = false]) async {
     if (file == null || file.isEmpty) return Future.value(null);
 
     if (loading) Notice.loading(true);
     Map<String, dynamic>? map = await Http.upload(name, file: file);
     if (loading) Notice.loading(false);
 
-    return Future.value(map == null || !map.containsKey('path') ? null : map['path']);
+    return Future.value(map);
   }
 
   static Future<List<Map<String, dynamic>>> _uploadPicks(String name, List<String>? files, [bool loading = false]) async {
