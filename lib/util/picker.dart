@@ -113,7 +113,7 @@ class Picker {
     if (file == null) return Future.value(null);
 
     if (loading) Notice.loading(true);
-    Map<String, dynamic>? map = await Http.upload(name, filename: file.name, bytes: file.bytes);
+    Map<String, dynamic>? map = await Http.upload(name, file: Context.isWeb ? null : file.path, filename: file.name, bytes: file.bytes);
     if (loading) Notice.loading(false);
 
     return map;
