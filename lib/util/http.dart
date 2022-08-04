@@ -47,16 +47,18 @@ class Http {
     if (file != null && file.startsWith('data:')) {
       String contentType = file.substring(5, file.indexOf(';'));
 
-      return await Http.post('/photon/ctrl/upload', {
+      Map<String, dynamic> map = await post('/photon/ctrl/upload', {
         'name': name,
         'contentType': contentType,
         'fileName': contentType.replaceAll('/', '.'),
         'base64': file.substring(file.indexOf(',') + 1),
       });
+
+      return Future.value(map['code'] == 0 ? map['data'] : map);
     }
 
     MultipartFile? mf;
-    if ((contentType == null || contentType.isEmpty) && file != null) contentType = lookupMimeType(file);
+    if (contentType == null || contentType.isEmpty) contentType = lookupMimeType(file ?? filename ?? '', headerBytes: bytes);
     MediaType? mt = contentType == null ? null : MediaType.parse(contentType);
     if (file != null) {
       mf = await MultipartFile.fromFile(file, filename: filename, contentType: mt);
