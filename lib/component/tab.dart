@@ -23,12 +23,7 @@ class _TabviewState extends State<Tabview> {
   Widget build(BuildContext context) {
     List<Widget> children = [titles()];
     if (widget.divider) children.add(Dividers.line);
-    Widget pv = PageView(controller: controller, children: widget.bodies);
-    if (widget.scrollable) {
-      children.add(Expanded(child: pv));
-    } else {
-      children.add(pv);
-    }
+    children.add(Expanded(child: PageView(controller: controller, children: widget.bodies)));
 
     return Column(
       mainAxisSize: MainAxisSize.min,
