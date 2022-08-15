@@ -15,7 +15,7 @@ class Generator {
     return string;
   }
 
-  static int range(int min, int max) {
-    return _random.nextInt(max - min) + min;
-  }
+  static int range(int min, int max) => _random.nextInt(max - min) + min;
+
+  static double double01() => _random.nextDouble();
 }
