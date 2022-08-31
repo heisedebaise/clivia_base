@@ -4,12 +4,19 @@ import 'dividers.dart';
 
 class Tabview extends StatefulWidget {
   final List<String> titles;
+  final TextStyle? style;
   final List<Widget> bodies;
   final int index;
   final bool divider;
-  final bool scrollable;
 
-  const Tabview({Key? key, required this.titles, required this.bodies, this.index = 0, this.divider = true, this.scrollable = false}) : super(key: key);
+  const Tabview({
+    Key? key,
+    required this.titles,
+    this.style,
+    required this.bodies,
+    this.index = 0,
+    this.divider = true,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TabviewState();
@@ -35,10 +42,12 @@ class _TabviewState extends State<Tabview> {
   Widget titles() {
     List<Widget> children = [];
     for (int i = 0; i < widget.titles.length; i++) {
+      TextStyle style = widget.style ?? const TextStyle();
+      if (i != index) style = style.copyWith(color: Theme.of(context).disabledColor);
       children.add(GestureDetector(
         child: Text(
           widget.titles[i],
-          style: TextStyle(color: i == index ? null : Theme.of(context).disabledColor),
+          style: style,
         ),
         onTap: () {
           setState(() {
