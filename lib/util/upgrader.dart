@@ -9,11 +9,13 @@ import 'l10n.dart';
 
 class Upgrader {
   static int _number = 0;
+  static String _name = '';
   static Map<String, dynamic> _version = {'version': _number};
 
   static Future<void> latest(BuildContext context) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     _number = int.tryParse(packageInfo.buildNumber) ?? 0;
+    _name = packageInfo.version;
 
     String client = _client();
     if (client.isEmpty) return Future.value(null);
@@ -85,7 +87,7 @@ class Upgrader {
 
   static bool get newer => _get('version', _number) > _number;
 
-  static String get name => _get('name', '');
+  static String get name => _get('name', _name);
 
   static int get version => _number;
 
