@@ -30,7 +30,17 @@ class _TabviewState extends State<Tabview> {
   Widget build(BuildContext context) {
     List<Widget> children = [titles()];
     if (widget.divider) children.add(Dividers.line);
-    children.add(Expanded(child: PageView(controller: controller, children: widget.bodies)));
+    children.add(Expanded(
+      child: PageView(
+        controller: controller,
+        children: widget.bodies,
+        onPageChanged: (int index) {
+          setState(() {
+            this.index = index;
+          });
+        },
+      ),
+    ));
 
     return Column(
       mainAxisSize: MainAxisSize.min,
