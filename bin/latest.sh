@@ -12,6 +12,7 @@ dependencies=(
  extended_image
  mime
  webview_flutter
+ webview_flutter_web
  pdfx
  flutter_easyloading
  gesture_password_widget
