@@ -43,7 +43,14 @@ class Dialogs {
     );
   }
 
-  static Widget _dialog(Widget? title, Widget? content, List<Widget> actions) => AlertDialog(
+  static Future<dynamic> show(BuildContext context, {Widget? title, Widget? content, List<Widget>? actions}) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => _dialog(title, content, actions),
+    );
+  }
+
+  static Widget _dialog(Widget? title, Widget? content, List<Widget>? actions) => AlertDialog(
         title: title,
         content: content,
         actions: actions,
