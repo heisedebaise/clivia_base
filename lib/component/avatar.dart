@@ -49,19 +49,15 @@ class Avatar extends StatelessWidget {
   }
 
   Widget _placeholder(BuildContext context) {
+    Widget child;
     if (nick.isEmpty) {
-      return Icon(
+      child = Icon(
         Icons.person,
         size: size,
         color: foreground ?? (Theme.of(context).brightness == Brightness.light ? Colors.black45 : null),
       );
-    }
-
-    return Container(
-      color: background ?? Colors.black26,
-      width: size,
-      height: size,
-      child: Center(
+    } else {
+      child = Center(
         child: Text(
           nick[0],
           style: TextStyle(
@@ -69,7 +65,14 @@ class Avatar extends StatelessWidget {
             fontSize: size * 0.5,
           ),
         ),
-      ),
+      );
+    }
+
+    return Container(
+      color: background ?? Colors.black26,
+      width: size,
+      height: size,
+      child: child,
     );
   }
 }
