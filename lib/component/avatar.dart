@@ -50,18 +50,19 @@ class Avatar extends StatelessWidget {
 
   Widget _placeholder(BuildContext context) {
     Widget child;
+    Color? color = foreground ?? (Theme.of(context).brightness == Brightness.light ? Colors.black45 : null);
     if (nick.isEmpty) {
       child = Icon(
         Icons.person,
         size: size,
-        color: foreground ?? (Theme.of(context).brightness == Brightness.light ? Colors.black45 : null),
+        color: color,
       );
     } else {
       child = Center(
         child: Text(
           nick[0],
           style: TextStyle(
-            color: foreground ?? (Theme.of(context).brightness == Brightness.light ? Colors.black45 : null),
+            color: color,
             fontSize: size * 0.5,
           ),
         ),
