@@ -9,8 +9,10 @@ class Avatar extends StatelessWidget {
   final String nick;
   final double size;
   final bool circular;
+  final Color? background;
+  final Color? foreground;
 
-  const Avatar({Key? key, this.uri = '', this.nick = '', this.size = 64, this.circular = false}) : super(key: key);
+  const Avatar({Key? key, this.uri = '', this.nick = '', this.size = 64, this.circular = false, this.background, this.foreground}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => circular ? _oval() : _rect();
@@ -51,19 +53,19 @@ class Avatar extends StatelessWidget {
       return Icon(
         Icons.person,
         size: size,
-        color: Theme.of(context).brightness == Brightness.light ? Colors.black45 : null,
+        color: foreground ?? (Theme.of(context).brightness == Brightness.light ? Colors.black45 : null),
       );
     }
 
     return Container(
-      color: Colors.black26,
+      color: background ?? Colors.black26,
       width: size,
       height: size,
       child: Center(
         child: Text(
           nick[0],
           style: TextStyle(
-            color: Theme.of(context).brightness == Brightness.light ? Colors.black45 : null,
+            color: foreground ?? (Theme.of(context).brightness == Brightness.light ? Colors.black45 : null),
             fontSize: size * 0.5,
           ),
         ),
