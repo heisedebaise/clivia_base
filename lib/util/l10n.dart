@@ -69,6 +69,12 @@ class L10n {
     return value;
   }
 
+  static String index(BuildContext? context, String key, int index, [List<dynamic>? args]) {
+    List<String> list = get(context, key, args).split(',');
+
+    return list[index < list.length ? index : (list.length - 1)];
+  }
+
   static String? _watch(BuildContext? context) {
     if (context == null) return _locale;
 
