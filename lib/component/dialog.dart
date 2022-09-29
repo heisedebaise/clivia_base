@@ -13,7 +13,7 @@ class Dialogs {
           child: TextButton(
             child: Text(l10n(null, 'ok')),
             onPressed: () {
-              PageRouter.pop(context);
+              PageRouter.pop();
             },
           ),
         ),
@@ -28,7 +28,7 @@ class Dialogs {
         TextButton(
           child: Text(l10n(null, 'cancel')),
           onPressed: () {
-            PageRouter.pop(context);
+            PageRouter.pop();
           },
         ),
         ElevatedButton(
