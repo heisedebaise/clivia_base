@@ -4,19 +4,27 @@ import '../util/l10n.dart';
 import '../util/router.dart';
 import 'popage.dart';
 
-class Coming {
-  static void push() {
-    PageRouter.push(const ComingSoonPage());
-  }
-}
-
 class ComingSoon extends StatelessWidget {
-  const ComingSoon({Key? key}) : super(key: key);
+  final Widget? child;
+
+  const ComingSoon({Key? key, this.child}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) {
+    if (child == null) {
+      return Center(
         child: Text(l10n(null, 'comming-soon')),
       );
+    }
+
+    return GestureDetector(
+      child: child,
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        PageRouter.push(const ComingSoonPage());
+      },
+    );
+  }
 }
 
 class ComingSoonPage extends StatelessWidget {
