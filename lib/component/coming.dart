@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../util/l10n.dart';
 import '../util/router.dart';
 import 'popage.dart';
 
@@ -12,8 +11,8 @@ class ComingSoon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (child == null) {
-      return Center(
-        child: Text(l10n(null, 'comming-soon')),
+      return const Center(
+        child: Text('coming soon'),
       );
     }
 

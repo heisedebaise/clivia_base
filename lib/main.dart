@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
+import 'component/coming.dart';
 import 'notifier.dart';
 import 'util/context.dart';
 import 'util/http.dart';
@@ -122,9 +123,7 @@ class MainState<T extends StatefulWidget> extends State<T> with WidgetsBindingOb
     return destinations;
   }
 
-  Widget body() => const Center(
-        child: Text('coming soon'),
-      );
+  Widget body() => const ComingSoon();
 
   List<IconData> icons() => [];
 
