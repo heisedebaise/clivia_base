@@ -1,0 +1,3 @@
+下列路径根据您的一个 .gitignore 文件而被忽略：
+clivia_base.iml
+pubspec.lock
