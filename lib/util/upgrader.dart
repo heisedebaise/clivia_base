@@ -103,7 +103,7 @@ class Upgrader {
     return '';
   }
 
-  static Future<bool> forward() async => await launchUrlString(_get('url', ''));
+  static Future<bool> forward() async => await launchUrlString(Http.url(_get('url', '')));
 
   static dynamic _get(String key, dynamic defaultValue) => _version.containsKey(key) ? _version[key] : defaultValue;
 }
