@@ -1,5 +1,6 @@
 import 'package:clivia_base/util/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../util/context.dart';
@@ -36,7 +37,17 @@ class _WebviewState extends State<Webview> {
     }
 
     return Center(
-      child: Text(l10n(null, 'not-currently-supported')),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(l10n(null, 'not-currently-supported')),
+          TextButton(
+              onPressed: () {
+                launchUrlString(Http.url(widget.url), mode: LaunchMode.externalApplication);
+              },
+              child: Text(l10n(null, 'webview.open'))),
+        ],
+      ),
     );
   }
 }

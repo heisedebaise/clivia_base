@@ -12,6 +12,9 @@
   "http": {
     "error": "HTTP request error"
   },
+  "webview": {
+    "open": "Open browser"
+  },
   "upgrader": {
     "newer": "New version found",
     "forward": "Update Now",
